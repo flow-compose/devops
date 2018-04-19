@@ -1,7 +1,13 @@
-Devops
+DevOps
 ======
 
 Fast build a devops development environment on aliyun
+
+### Install Go-Flow
+
+```bash
+go get -v -u github.com/gogap/go-flow
+```
 
 #### Init your own secret info into env.json
 
