@@ -1,7 +1,7 @@
 Aliyun
 ======
 
-Compose of aliyun infrastructure instance creation
+Compose of aliyun infrastructure instance management
 
 #### Init your own secret info into env.json
 
