@@ -1,0 +1,13 @@
+ubuntu:
+  image: 'idocking/ubuntu-sshd:16.04'
+  ports:
+    - 20022:22
+  hostname: services-agent
+  restart: always
+  volumes:
+    - /var/lib/docker/user_data/ubuntu/services_agent:/mnt/volume:rw
+    - /var/lib/docker/user_data/gitlab-runner:/mnt/gitlab-runner:rw
+  labels:
+    aliyun.scale: '1'
+    aliyun.probe.url: tcp://container:22
+    aliyun.probe.initial_delay_seconds: 10

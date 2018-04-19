@@ -1,0 +1,9 @@
+redis:
+  image: 'redis:4.0'
+  hostname: "redisio"
+  command:
+    - '--loglevel warning'
+  restart: always
+  ports:
+   - "6379:6379"
+  labels:

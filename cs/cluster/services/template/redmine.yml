@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+  memcached:
+    image: sameersbn/memcached:latest
+
+  redmine:
+    image: sameersbn/redmine:3.4.4-2
+    depends_on:
+    - memcached
+    links:
+    - memcached:memcachedio
+    environment:
+    - TZ=$TZ
+    - DB_ADAPTER=$DB_ADAPTER
+    - DB_HOST=$DB_HOST
+    - DB_PORT=$DB_PORT
+    - DB_USER=$DB_USER
+    - DB_PASS=$DB_PASS
+    - DB_NAME=$DB_NAME
+    - REDMINE_PORT=$REDMINE_PORT
+    - REDMINE_HTTPS=$REDMINE_HTTPS
+    - REDMINE_RELATIVE_URL_ROOT=$REDMINE_RELATIVE_URL_ROOT
+    - REDMINE_SECRET_TOKEN=$REDMINE_SECRET_TOKEN
+    - REDMINE_SUDO_MODE_ENABLED=$REDMINE_SUDO_MODE_ENABLED
+    - REDMINE_SUDO_MODE_TIMEOUT=$REDMINE_SUDO_MODE_TIMEOUT
+    - REDMINE_CONCURRENT_UPLOADS=$REDMINE_CONCURRENT_UPLOADS
+    - REDMINE_BACKUP_SCHEDULE=$REDMINE_BACKUP_SCHEDULE
+    - REDMINE_BACKUP_EXPIRY=$REDMINE_BACKUP_EXPIRY
+    - REDMINE_BACKUP_TIME=$REDMINE_BACKUP_TIME
+    - SMTP_ENABLED=false
+    - IMAP_ENABLED=false
+    ports:
+    - "10083:80"
+    volumes:
+    - /var/lib/docker/user_data/redmine/redmine:/home/redmine/data

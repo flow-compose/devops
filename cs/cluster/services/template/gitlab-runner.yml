@@ -1,0 +1,93 @@
+docker-executor-general-1:
+  image: 'idocking/gitlab-runner:latest'
+  restart: always
+  links:
+  - docker
+  hostname: docker-executor-general-1
+  volumes:
+  - oss-cluster:/cluster
+  - /var/lib/docker/user_data/gitlab-runner/data:/mnt/data:ro
+  - /var/lib/docker/user_data/gitlab-runner/config/docker-executor-general-1:/etc/gitlab-runner
+  environment:
+  - CI_SERVER_URL=$CI_SERVER_URL
+  - REGISTRATION_TOKEN=$REGISTRATION_TOKEN
+  - DOCKER_IMAGE=alpine:3.6
+  - RUNNER_TAG_LIST=general,docker,pages
+  - RUNNER_EXECUTOR=docker
+  - REGISTER_LOCKED=false
+  - REGISTER_RUN_UNTAGGED=true
+  - DOCKER_HOST=tcp://docker:2375
+  - CI_SERVER_TLS_CERT_FILE=$CI_SERVER_TLS_CERT_FILE
+  - CI_SERVER_TLS_KEY_FILE=$CI_SERVER_TLS_KEY_FILE
+
+docker-executor-general-2:
+  image: 'idocking/gitlab-runner:latest'
+  restart: always
+  links:
+  - docker
+  hostname: docker-executor-general-2
+  volumes:
+  - oss-cluster:/cluster
+  - /var/lib/docker/user_data/gitlab-runner/data:/mnt/data:ro
+  - /var/lib/docker/user_data/gitlab-runner/config/docker-executor-general-2:/etc/gitlab-runner
+  environment:
+  - CI_SERVER_URL=$CI_SERVER_URL
+  - REGISTRATION_TOKEN=$REGISTRATION_TOKEN
+  - DOCKER_IMAGE=alpine:3.6
+  - RUNNER_TAG_LIST=general,docker,pages
+  - RUNNER_EXECUTOR=docker
+  - REGISTER_LOCKED=false
+  - REGISTER_RUN_UNTAGGED=true
+  - DOCKER_HOST=tcp://docker:2375
+  - CI_SERVER_TLS_CERT_FILE=$CI_SERVER_TLS_CERT_FILE
+  - CI_SERVER_TLS_KEY_FILE=$CI_SERVER_TLS_KEY_FILE
+
+shell-executor-general-1:
+  image: 'idocking/gitlab-runner:latest'
+  restart: always
+  links:
+  - docker
+  hostname: shell-executor-general-1
+  volumes:
+  - oss-cluster:/cluster
+  - /var/lib/docker/user_data/gitlab-runner/data:/mnt/data:ro
+  - /var/lib/docker/user_data/gitlab-runner/config/shell-executor-general-1:/etc/gitlab-runner
+  environment:
+  - CI_SERVER_URL=$CI_SERVER_URL
+  - REGISTRATION_TOKEN=$REGISTRATION_TOKEN
+  - RUNNER_TAG_LIST=general,shell
+  - RUNNER_EXECUTOR=shell
+  - REGISTER_LOCKED=false
+  - REGISTER_RUN_UNTAGGED=true
+  - DOCKER_HOST=tcp://docker:2375
+  - CI_SERVER_TLS_CERT_FILE=$CI_SERVER_TLS_CERT_FILE
+  - CI_SERVER_TLS_KEY_FILE=$CI_SERVER_TLS_KEY_FILE
+
+
+shell-executor-general-2:
+  image: 'idocking/gitlab-runner:latest'
+  restart: always
+  links:
+  - docker
+  hostname: shell-executor-general-2
+  volumes:
+  - oss-cluster:/cluster
+  - /var/lib/docker/user_data/gitlab-runner/data:/mnt/data:ro
+  - /var/lib/docker/user_data/gitlab-runner/config/shell-executor-general-2:/etc/gitlab-runner
+  environment:
+  - CI_SERVER_URL=$CI_SERVER_URL
+  - REGISTRATION_TOKEN=$REGISTRATION_TOKEN
+  - RUNNER_TAG_LIST=general,shell
+  - RUNNER_EXECUTOR=shell
+  - REGISTER_LOCKED=false
+  - REGISTER_RUN_UNTAGGED=true
+  - DOCKER_HOST=tcp://docker:2375
+  - CI_SERVER_TLS_CERT_FILE=$CI_SERVER_TLS_CERT_FILE
+  - CI_SERVER_TLS_KEY_FILE=$CI_SERVER_TLS_KEY_FILE
+
+docker:
+  image: docker:stable-dind
+  volumes:
+  - /var/lib/docker/user_data/gitlab-runner/data:/mnt/data:ro
+  privileged: true
+  aliyun.probe.url: tcp://container:2375
