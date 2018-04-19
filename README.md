@@ -15,5 +15,5 @@ Compose of aliyun infrastructure instance creation
 #### Create VPC
 
 ```bash
-go-flow run --config flow.conf create ecs vpc --config aliyun.conf  --env-file dev.env
+go-flow run --config flow.conf create ecs vpc --config configs/aliyun.conf  --env-file dev.env --ctx code:gogap
 ```
