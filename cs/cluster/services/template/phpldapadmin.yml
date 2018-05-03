@@ -1,5 +1,7 @@
 phpldapadmin:
     image: osixia/phpldapadmin:latest
+    ports:
+    - "10090:80"
     environment:
       PHPLDAPADMIN_LDAP_HOSTS: "openldap"
       PHPLDAPADMIN_HTTPS: "false"

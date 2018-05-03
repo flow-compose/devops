@@ -75,6 +75,7 @@ services:
     - NGINX_REAL_IP_RECURSIVE=$NGINX_REAL_IP_RECURSIVE
     - SMTP_ENABLED=$SMTP_ENABLED
     - IMAP_ENABLED=$IMAP_ENABLED
+    - GITLAB_SHARED_RUNNERS_REGISTRATION_TOKEN=$GITLAB_SHARED_RUNNERS_REGISTRATION_TOKEN
     labels:
         aliyun.probe.url: tcp://container:80
         aliyun.probe.initial_delay_seconds: "10"
